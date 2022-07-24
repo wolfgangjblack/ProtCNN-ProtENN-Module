@@ -172,9 +172,7 @@ def build_training_datasets(config: dict):
     ##Get dicts for sequence/family mapping based off training data
     
     data_dir = config['DATA_DIR']
-    max_len = config['MAX_LEN']
-    batch_size = config['BATCH_SIZE']
-    
+    max_len = config['MAX_LEN']    
     print("building artifacts for training",'\n')
     
     train_data, train_targets = reader('train',data_dir)
@@ -192,10 +190,10 @@ def build_training_datasets(config: dict):
     ##Use Tensorflow to put into tensordataset
     print("building tensorflow datasets",'\n')
     train_dataset = tf.data.Dataset.from_tensor_slices(
-      (train_dict['sequence'], train_dict['target'])).shuffle(True).batch(batch_size)
+      (train_dict['sequence'], train_dict['target']))
     
     validation_dataset = tf.data.Dataset.from_tensor_slices(
-      (dev_dict['sequence'], dev_dict['target'])).batch(batch_size)
+      (dev_dict['sequence'], dev_dict['target']))
           
     print("finished building training sets",'\n')
     return train_dataset, validation_dataset, len(fam2label), len(word2id)

@@ -15,21 +15,17 @@ import json
 #data_config entries
 # DATA_DIR: this is the directory where the data lives, path should be relative to /src/ directory
 #
-# MAX_LEN: this is the max allowable length for sequences. sequences range in length, with 100 to 120 being common choices - this
-#     code pads any sequences LT MAX_LENGTH at the end of the sequence
+# MAX_LEN: this is the max allowable length for sequences. sequences range in length, with 100 to 120 being common choices - 
+#     this code pads any sequences LT MAX_LENGTH at the end of the sequence
 #     THIS CAN BE CONSIDERED TO BE A TRAINING PARAMETER
 #
 # TEST_BATCH_SIZE: this is the batch size that will be used in the batch command when the test feature is turned 
 #     into batch tensor objects - this is meant to be lower for memory purposes
 #
-# BATCH_SIZE: this is the batch size that will be used in the batch command when the training, validation datasets are turned 
-#     into batch tensor objects
-#     THIS CAN BE CONSIDERED TO BE A MODEL HYPERPARAMETER
 ### 
 
 data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
-               "BATCH_SIZE": 256,
                "TEST_BATCH_SIZE": 100}
 
 # -------------------------
@@ -74,7 +70,8 @@ data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
 #    Note: on google colab with TPU 1 epoch takes roughly 1 hour
 #     THIS CAN BE CONSIDERED TO BE A MODEL HYPERPARAMETER
 #
-#"BATCH_SIZE": inherited from data_config, this batch size is also fed into the model during model.fit
+# BATCH_SIZE: this is the batch size that will be used in the batch command when the training, validation datasets are turned 
+#     into batch tensor objects
 #     THIS CAN BE CONSIDERED TO BE A MODEL HYPERPARAMETER
 #
 ### NOTE: Looking at /src/utils/modelutils.py the build_train_model function also has vocab_size and num_classes items in the config file. These are added by the build_training_datasets function (found in /src/utils/datautils.py)
@@ -91,7 +88,7 @@ model_config = {"NUM_MODELS": 1,
                 "LOSS": 'sparse_categorical_crossentropy',
                 "METRICS": ['accuracy'],
                 "EPOCHS": 5,
-                "BATCH_SIZE": data_config['BATCH_SIZE']}
+                "BATCH_SIZE": 256}
 
 config = {'data_config': data_config,
           'model_config': model_config}
