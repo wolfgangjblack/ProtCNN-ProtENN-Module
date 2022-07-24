@@ -6,3 +6,4 @@ sklearn==1.0.2
 tensorflow==2.8.2
 tensorflow-datasets==4.0.1
 tensorflow-addons==0.17.1
+tensorboard==2.2.2
