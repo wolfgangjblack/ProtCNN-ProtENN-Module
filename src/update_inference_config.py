@@ -18,14 +18,16 @@ import json
 # MAX_LEN: this is the max allowable length for sequences. sequences range in length, with 100 to 120 being common choices - this
 #     code pads any sequences LT MAX_LENGTH at the end of the sequence
 #
-# NUM_CLASSES: this is the number of unique labels we have in our training data
+# BATCH_SIZE: this is the batch size that will be used in the batch command when the training, validation datasets are turned 
+#     into batch tensor objects
+#     THIS CAN BE CONSIDERED TO BE A MODEL HYPERPARAMETERe have in our training data
 #
 # INFERENCE_DIR: this is the directory where the model(s) live(s), path should be relative to /src/ directory
 ### 
 
 data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
-               "NUM_CLASSES": 17930,
+               "BATCH_SIZE": 256,
                "INFERENCE_DIR": '../models/ensemble_model'}
 
 

@@ -162,7 +162,10 @@ def build_train_model(config: dict,
   
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
-        
+    
+    log_dir = model_dir+'logs/'
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+    
     for i in range(num_models):
         ##Trains num_models ProtCNN models
         print(f'training model {i}')
@@ -175,7 +178,8 @@ def build_train_model(config: dict,
         history = model.fit(train_ds.shuffle(True).batch(batch_size), 
                             epochs = epochs,
                             batch_size = batch_size,
-                            validation_data = val_ds)
+                            validation_data = val_ds,
+                            callbacks = [tensorboard_callback])
         if num_models > 1:
             model.save(model_dir+'ProtENN_model_'+str(i)+'{}_epoch_model.h5'.format(epochs))
         else:
@@ -184,13 +188,13 @@ def build_train_model(config: dict,
     
     return inference_dir
 
-def do_inference(test_dict: dict, num_classes: int, inference_dir: str):
+def do_inference(test_dict: dict, config: dict):
     """This function does inference on whatever model(s) are in the inference_dir, which is the output of build_train_model.
     Args:
         test_dict: dict
             - this is the dictionary containing test data sequences and targets, produced by build_inference_data
-        num_classes: int
-            - this is the number of classes, or unique labels, the model predicts on.
+        batch_size: int
+            - this is the batch_size used in inference when storing the test_dataset in memory
         inference_dir: str
             - this is the directory where the model(s) live. This can be either output during the model training or specified in inf_config if the user is just doing inference on (a) model(s)
     Outputs:
@@ -201,14 +205,22 @@ def do_inference(test_dict: dict, num_classes: int, inference_dir: str):
         simplified_results: txt
             - an abbreviated version of classification_report which only shows the accuracy and micro/macro precision, recall, and f1 scores
     """
-    ##initialize for additive assignment later
-    y_preds = np.zeros((len(test_dict['target']), num_classes))
+    ##initialize
+    batch_size = config['data_config']['BATCH_SIZE']
+    inference_dir = config['data_config']['INFERENCE_DIR']
+    
+    y_true = test_dict['target']
+    test_dataset = tf.data.Dataset.from_tensor_slices(test_dict['sequence']).batch(batch_size)
     
     k = 0 #counter for averaging
     for i in [i for i in os.listdir(inference_dir) if '_model' in i]:
+        print(i)
         ##Load in model and add predictions
         model = tf.keras.models.load_model(inference_dir+i)
-        y_preds += model.predict(test_dict['sequence'])
+        if i == ([i for i in os.listdir(inference_dir) if '_model' in i][0]):
+            y_preds = model.predict(test_dataset)
+        else:
+            y_preds += model.predict(test_dataset)
         k += 1
    
     ##average y_preds incase of ensemble method, if single ProtCNN, this divides by 1
