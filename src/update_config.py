@@ -19,6 +19,9 @@ import json
 #     code pads any sequences LT MAX_LENGTH at the end of the sequence
 #     THIS CAN BE CONSIDERED TO BE A TRAINING PARAMETER
 #
+# TEST_BATCH_SIZE: this is the batch size that will be used in the batch command when the test feature is turned 
+#     into batch tensor objects - this is meant to be lower for memory purposes
+#
 # BATCH_SIZE: this is the batch size that will be used in the batch command when the training, validation datasets are turned 
 #     into batch tensor objects
 #     THIS CAN BE CONSIDERED TO BE A MODEL HYPERPARAMETER
@@ -26,7 +29,8 @@ import json
 
 data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
-               "BATCH_SIZE": 256}
+               "BATCH_SIZE": 256,
+               "TEST_BATCH_SIZE": 100}
 
 # -------------------------
 #model_config entries
