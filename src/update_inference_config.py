@@ -27,7 +27,7 @@ import json
 data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
                "TEST_BATCH_SIZE": 100,
-               "INFERENCE_DIR": '../models/ensemble_model'}
+               "INFERENCE_DIR": '../models/ensemble_model/'}
 
 
 

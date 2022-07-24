@@ -70,7 +70,7 @@ def main():
     
     train_ds, validation_ds, config= get_training_sets(config)
     
-    config = build_models(config, train_ds, validation_ds):
+    config = build_models(config, train_ds, validation_ds)
     
     get_model_inference(config)
     

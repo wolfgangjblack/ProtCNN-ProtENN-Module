@@ -108,7 +108,7 @@ def build_train_model(config: dict,
     saves the results while producing a config entry meant to be read for inference. Note, this uses for loops over num_models to construct, train, and save ProtCNN models
     Args:
         config: dict
-            - this is a sub_dictionary which contains all the variables necessary for modeling
+            - this is the config['model_config'] sub_dictionary which contains all the variables necessary for modeling
               num_models: int
                   - this is the number of ProtCNN models to build, meant to be between >=1
               model_dir: str
@@ -170,15 +170,12 @@ def build_train_model(config: dict,
         ##Trains num_models ProtCNN models
         print(f'training model {i}')
         #Constructs model using the get_protCNN_model
-        model = get_protCNN_model(num_res_blocks, max_len, vocab_size, num_classes, 
-                                  filters , d_rate, dropout, l2_factor,
-                                  opt, loss, metrics)
-        
+        model = get_protCNN_model(num_res_blocks, max_len, vocab_size, num_classes, filters , d_rate, dropout, l2_factor, opt, loss, metrics)
         ##We've reshuffled here in case of ensemble modeling.
         history = model.fit(train_ds.shuffle(True).batch(batch_size), 
                             epochs = epochs,
                             batch_size = batch_size,
-                            validation_data = val_ds,
+                            validation_data = val_ds.batch(batch_size),
                             callbacks = [tensorboard_callback])
         if num_models > 1:
             model.save(model_dir+'ProtENN_model_'+str(i)+'{}_epoch_model.h5'.format(epochs))
