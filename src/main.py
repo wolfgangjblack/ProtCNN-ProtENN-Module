@@ -39,7 +39,7 @@ def build_models(config:dict , train_ds, validation_ds) -> dict:
             - this is the same full config initially read in to the function, however the sub dictionary 'data_config' has been given a new item
                 - inference_dir is the directory where the models have been saved by the modelutils function build_train_model. This is also the directory where results from inferences will be saved
     """
-    config['data_config']['inference_dir'] = build_train_model(config['model_config'], train_ds, validation_ds)
+    config['data_config']['INFERENCE_DIR'] = build_train_model(config['model_config'], train_ds, validation_ds)
     return config
 
 def get_model_inference(config):
@@ -55,7 +55,7 @@ def get_model_inference(config):
         simplified_results: txt
             - an abbreviated version of classification_report which only shows the accuracy and micro/macro precision, recall, and f1 scores
     """
-    inference_dir = config['data_config']['inference_dir']
+    inference_dir = config['data_config']['INFERENCE_DIR']
     num_classes = config['model_config']['NUM_CLASSES']
     
     test_dict = build_inference_data(config['data_config'])
@@ -77,7 +77,7 @@ def main():
     
     get_model_inference(config)
     
-    with open(config['data_config']['inference_dr']+'final_config.json', 'w') as outfile:
+    with open(config['data_config']['INFERENCE_DIR']+'final_config.json', 'w') as outfile:
         json.dump(config, outfile)
     
 if __name__=="__main__":

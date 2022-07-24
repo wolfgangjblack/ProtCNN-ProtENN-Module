@@ -18,8 +18,8 @@ def get_model_inference(config):
         simplified_results: txt
             - an abbreviated version of classification_report which only shows the accuracy and micro/macro precision, recall, and f1 scores
     """
-    inference_dir = config['INFERENCE_DIR']
-    num_classes = config['NUM_CLASSES']
+    inference_dir = config['data_config']['INFERENCE_DIR']
+    num_classes = config['data_config']['NUM_CLASSES']
     
     test_dict = build_inference_data(config['data_config'])
     

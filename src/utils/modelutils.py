@@ -2,6 +2,7 @@ import os
 
 import tensorflow as tf
 import keras
+import numpy as np
 from datetime import datetime
 
 from keras.preprocessing.sequence import pad_sequences
