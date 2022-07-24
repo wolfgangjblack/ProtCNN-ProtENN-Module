@@ -206,7 +206,7 @@ def do_inference(test_dict: dict, config: dict):
             - an abbreviated version of classification_report which only shows the accuracy and micro/macro precision, recall, and f1 scores
     """
     ##initialize
-    batch_size = config['data_config']['BATCH_SIZE']
+    batch_size = config['data_config']['TEST_BATCH_SIZE']
     inference_dir = config['data_config']['INFERENCE_DIR']
     
     y_true = test_dict['target']
