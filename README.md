@@ -15,6 +15,10 @@ WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign
 ## dir structure
 ├── Dockerfile
 ├── README.md
+├── models
+│   └── 2022_07_24_hr00_mm28_ss57
+│       ├── simp_results.txt
+│       └── verbose_results.txt
 ├── nb
 │   ├── Sequence_and_fam_EDA.ipynb
 │   ├── download_PFAM_to_drive.ipynb
