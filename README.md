@@ -13,7 +13,7 @@ Two possible models can be developed here via main.py using the config.json file
 WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign an even number of models. 
 
 ## dir structure
-./ <br>
+.
 ├── Dockerfile <br>
 ├── README.md <br>
 ├── models <br>
@@ -30,7 +30,8 @@ WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign
 │   ├── build_test_nb_py.ipynb <br>
 │   ├── download_PFAM_to_drive.ipynb <br>
 │   ├── get_protCNN_inference.ipynb <br>
-│   └── get_protenn_model.ipynb <br>
+│   ├── get_protenn_model.ipynb <br>
+│   └── main_py.ipynb <br>
 ├── requirements.txt <br>
 ├── src <br>
 │   ├── config <br>
@@ -60,7 +61,7 @@ To use this git properly, one can either install Docker and download the docker 
 ## nb
 In the /nb/ directory that is on the same level of abstraction as /src/, there are several nbs detailing the evolution and development of the code found in /src/, as well as an Sequence_and_fam_EDA and a tensorboard_metrics notebook which detail the initial EDA and model tensorboard outputs respectively. 
 
-<b>It should be noted that due to computational restrictions much of this work was done in nbs and then abstracted to .pys, but .pys (such as main.py) remain largely untested in a local environment. Testing should be done in a new env even with the Dockerfile </b>
+<b>It should be noted that due to computational restrictions much of this work was done in nbs and then abstracted to .pys, but .pys (such as main.py being abstracted via the main_py NB) remain largely untested in a local environment. Testing should be done in a new env even with the Dockerfile </b>
 
 
 ##  Dataset
