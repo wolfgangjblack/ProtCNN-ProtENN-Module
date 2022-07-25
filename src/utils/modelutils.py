@@ -207,7 +207,7 @@ def do_inference(test_dict: dict, config: dict):
     if len(test_range) < 2:
         pass
     elif len(test_range) == 2:
-	test_dict = {'sequence': test_dict['sequence'][test_range[0]:test_range[1], 'target': test_dict['target'][test_range[0]:test_range[1]]}
+	test_dict = {'sequence': test_dict['sequence'][test_range[0]:test_range[1]], 'target': test_dict['target'][test_range[0]:test_range[1]]}
 
     test_dataset = tf.data.Dataset.from_tensor_slices(test_dict['sequence']).batch(batch_size)
     y_preds = np.zeros((len(test_dir['target']), num_classes))
