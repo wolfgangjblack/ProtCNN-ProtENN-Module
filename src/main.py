@@ -42,7 +42,7 @@ def build_models(config:dict , train_ds, validation_ds) -> dict:
     config['data_config']['INFERENCE_DIR'] = build_train_model(config['model_config'], train_ds, validation_ds)
     return config
 
-def get_model_inference(config):
+def get_model_inference(config: main):
     """This function is used by main to perform inference on the models trained previously during main and save the results to a results directory
     Arg:
         config: dict
