@@ -33,12 +33,6 @@ def verify_feature_shapes(x: dict, max_len,word2id):
 def check_config_dtypes(config):
   count = 0
   broken_configs = []
-  if isinstance(config['data_config']['BATCH_SIZE'],int) == True:
-    pass
-  else:
-    count += 1
-    broken_configs.append('\n data_config:BATCH_SIZE')
-
   if isinstance(config['data_config']['DATA_DIR'],str) == True:
     pass
   else:
@@ -56,6 +50,12 @@ def check_config_dtypes(config):
   else:
     count += 1
     broken_configs.append('\n data_config:TEST_BATCH_SIZE')
+
+  if isinstance(config['data_config']['TEST_RANGE'],list) == True:
+    pass
+  else:
+    count += 1
+    broken_configs.append('\n data_config:BATCH_SIZE')
 
   if isinstance(config['model_config']['BATCH_SIZE'],int) == True:
     pass

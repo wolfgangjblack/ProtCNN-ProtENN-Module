@@ -22,11 +22,14 @@ import json
 # TEST_BATCH_SIZE: this is the batch size that will be used in the batch command when the test feature is turned 
 #     into batch tensor objects - this is meant to be lower for memory purposes
 #
+# TEST_RANGE: this is a list that will be used during inference when testing scripts due to limited memory on systems. 
+#      This grabs the data for inference between TEST_RANGE0] and TEST_RANGE[1]
 ### 
 
 data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
-               "TEST_BATCH_SIZE": 100}
+               "TEST_BATCH_SIZE": 100,
+               "TEST_RANGE": [0,10000]}
 
 # -------------------------
 #model_config entries

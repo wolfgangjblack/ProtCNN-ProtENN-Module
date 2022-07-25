@@ -180,7 +180,7 @@ def build_train_model(config: dict,
             model.save(model_dir+'ProtCNN_model_'+'{}_epoch_model.h5'.format(epochs))
     print('\nFinished Saving Model(s)\n')
     
-    return inference_dir
+    return model_dir
 
 def do_inference(test_dict: dict, config: dict):
     """This function does inference on whatever model(s) are in the inference_dir, which is the output of build_train_model.
@@ -202,27 +202,31 @@ def do_inference(test_dict: dict, config: dict):
     ##initialize
     batch_size = config['data_config']['TEST_BATCH_SIZE']
     inference_dir = config['data_config']['INFERENCE_DIR']
-    
-    y_true = test_dict['target']
+    num_classes = config['modle_config']['NUM_CLASSES']
+    test_range = config['data_config']['TEST_RANGE']
+    if len(test_range) < 2:
+        pass
+    elif len(test_range) == 2:
+	test_dict = {'sequence': test_dict['sequence'][test_range[0]:test_range[1], 'target': test_dict['target'][test_range[0]:test_range[1]]}
+
     test_dataset = tf.data.Dataset.from_tensor_slices(test_dict['sequence']).batch(batch_size)
-    
+    y_preds = np.zeros((len(test_dir['target']), num_classes))
+    y_true = test_dict['target']
+
     k = 0 #counter for averaging
     for i in [i for i in os.listdir(inference_dir) if '_model' in i]:
         print(i)
         ##Load in model and add predictions
         model = tf.keras.models.load_model(inference_dir+i)
-        if i == ([i for i in os.listdir(inference_dir) if '_model' in i][0]):
-            y_preds = model.predict(test_dataset)
-        else:
-            y_preds += model.predict(test_dataset)
+        y_preds += model.predict(test_dataset)
         k += 1
+        print("finished loading predictions")
    
     ##average y_preds incase of ensemble method, if single ProtCNN, this divides by 1
     y_preds = y_preds/k
     
     ##get the index of the max
     y_preds = np.argmax(y_preds, axis = 1)
-    
     
     class_rep = classification_report(y_true, y_preds)
     

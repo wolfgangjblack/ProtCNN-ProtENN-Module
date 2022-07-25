@@ -22,12 +22,16 @@ import json
 #     into batch tensor objects - this is meant to be lower for memory purposes
 #
 # INFERENCE_DIR: this is the directory where the model(s) live(s), path should be relative to /src/ directory
+#
+# TEST_RANGE: this is a list that will be used during inference when testing scripts due to limited memory on systems. 
+#      This grabs the data for inference between TEST_RANGE0] and TEST_RANGE[1]
 ### 
 
 data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
                "TEST_BATCH_SIZE": 100,
-               "INFERENCE_DIR": '../models/ensemble_model/'}
+               "INFERENCE_DIR": '../models/ensemble/',
+               "TEST_RANGE": [0,10000]}}
 
 
 
