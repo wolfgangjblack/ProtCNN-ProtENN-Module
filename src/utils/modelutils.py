@@ -202,12 +202,12 @@ def do_inference(test_dict: dict, config: dict):
     ##initialize
     batch_size = config['data_config']['TEST_BATCH_SIZE']
     inference_dir = config['data_config']['INFERENCE_DIR']
-    num_classes = config['modle_config']['NUM_CLASSES']
+    num_classes = config['model_config']['NUM_CLASSES']
     test_range = config['data_config']['TEST_RANGE']
     if len(test_range) < 2:
         pass
     elif len(test_range) == 2:
-	test_dict = {'sequence': test_dict['sequence'][test_range[0]:test_range[1]], 'target': test_dict['target'][test_range[0]:test_range[1]]}
+        test_dict = {'sequence': test_dict['sequence'][test_range[0]:test_range[1]], 'target': test_dict['target'][test_range[0]:test_range[1]]}
 
     test_dataset = tf.data.Dataset.from_tensor_slices(test_dict['sequence']).batch(batch_size)
     y_preds = np.zeros((len(test_dir['target']), num_classes))
