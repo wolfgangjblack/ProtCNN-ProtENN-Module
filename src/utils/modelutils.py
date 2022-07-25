@@ -210,7 +210,7 @@ def do_inference(test_dict: dict, config: dict):
         test_dict = {'sequence': test_dict['sequence'][test_range[0]:test_range[1]], 'target': test_dict['target'][test_range[0]:test_range[1]]}
 
     test_dataset = tf.data.Dataset.from_tensor_slices(test_dict['sequence']).batch(batch_size)
-    y_preds = np.zeros((len(test_dir['target']), num_classes))
+    y_preds = np.zeros((len(test_dict['target']), num_classes))
     y_true = test_dict['target']
 
     k = 0 #counter for averaging
