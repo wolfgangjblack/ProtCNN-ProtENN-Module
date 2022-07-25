@@ -13,30 +13,41 @@ Two possible models can be developed here via main.py using the config.json file
 WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign an even number of models. 
 
 ## dir structure
+./
 ├── Dockerfile
 ├── README.md
 ├── models
-│   └── 2022_07_24_hr00_mm28_ss57
-│       ├── simp_results.txt
-│       └── verbose_results.txt
+│   ├── 2022_07_24_hr00_mm28_ss57
+│   │   ├── simp_results.txt
+│   │   └── verbose_results.txt
+│   └── ensemble
+│       └── 2022_07_25_hr01_mm40_ss43
+│           └── results
+│               ├── simp_results.txt
+│               └── verbose_results.txt
 ├── nb
 │   ├── Sequence_and_fam_EDA.ipynb
+│   ├── build_test_nb_py.ipynb
 │   ├── download_PFAM_to_drive.ipynb
 │   ├── get_protCNN_inference.ipynb
 │   └── get_protenn_model.ipynb
 ├── requirements.txt
-└── src
-    ├── config
-    │   ├── config.json
-    │   └── inf_config.json
-    ├── inference.py
-    ├── main.py
-    ├── update_config.py
-    ├── update_inference_config.py
-    └── utils
-        ├── datautils.py
-        └── modelutils.py
-
+├── src
+│   ├── config
+│   │   ├── config.json
+│   │   └── inf_config.json
+│   ├── inference.py
+│   ├── main.py
+│   ├── update_config.py
+│   ├── update_inference_config.py
+│   └── utils
+│       ├── __pycache__
+│       │   └── datautils.cpython-39.pyc
+│       ├── datautils.py
+│       └── modelutils.py
+└── test
+    └── test.py
+    
 ## Usage
 
 To use this git properly, one can either install Docker and download the docker image, place it inside some cloud resource and run via the image. This however will only run main.py, which reads in a base config file and generates either a ProtCNN or ProtENN. Users can also interact with this via a CLI (or notebook mimicing a CLI) calling main.py, inference.py, update_config.py, or update_inference_config.py. 
@@ -48,6 +59,8 @@ To use this git properly, one can either install Docker and download the docker 
 
 ## nb
 In the /nb/ directory that is on the same level of abstraction as /src/, there are several nbs detailing the evolution and development of the code found in /src/, as well as an Sequence_and_fam_EDA and a tensorboard_metrics notebook which detail the initial EDA and model tensorboard outputs respectively. 
+
+<b>It should be noted that due to computational restrictions much of this work was done in nbs and then abstracted to .pys, but .pys (such as main.py) remain largely untested in a local environment. Testing should be done in a new env even with the Dockerfile </b>
 
 
 ##  Dataset
