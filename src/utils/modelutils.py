@@ -163,9 +163,6 @@ def build_train_model(config: dict,
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
     
-    log_dir = model_dir+'logs/'
-    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-    
     for i in range(num_models):
         ##Trains num_models ProtCNN models
         print(f'training model {i}')
@@ -175,8 +172,8 @@ def build_train_model(config: dict,
         history = model.fit(train_ds.shuffle(True).batch(batch_size), 
                             epochs = epochs,
                             batch_size = batch_size,
-                            validation_data = val_ds.batch(batch_size),
-                            callbacks = [tensorboard_callback])
+                            validation_data = val_ds.batch(batch_size))
+                            
         if num_models > 1:
             model.save(model_dir+'ProtENN_model_'+str(i)+'{}_epoch_model.h5'.format(epochs))
         else:
