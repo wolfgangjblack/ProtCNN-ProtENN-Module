@@ -14,39 +14,39 @@ WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign
 
 ## dir structure
 ./
-├── Dockerfile
-├── README.md
-├── models
-│   ├── 2022_07_24_hr00_mm28_ss57
-│   │   ├── simp_results.txt
-│   │   └── verbose_results.txt
-│   └── ensemble
-│       └── 2022_07_25_hr01_mm40_ss43
-│           └── results
-│               ├── simp_results.txt
-│               └── verbose_results.txt
-├── nb
-│   ├── Sequence_and_fam_EDA.ipynb
-│   ├── build_test_nb_py.ipynb
-│   ├── download_PFAM_to_drive.ipynb
-│   ├── get_protCNN_inference.ipynb
-│   └── get_protenn_model.ipynb
-├── requirements.txt
-├── src
-│   ├── config
-│   │   ├── config.json
-│   │   └── inf_config.json
-│   ├── inference.py
-│   ├── main.py
-│   ├── update_config.py
-│   ├── update_inference_config.py
-│   └── utils
-│       ├── __pycache__
-│       │   └── datautils.cpython-39.pyc
-│       ├── datautils.py
-│       └── modelutils.py
-└── test
-    └── test.py
+├── Dockerfile <br>
+├── README.md <br>
+├── models <br>
+│   ├── 2022_07_24_hr00_mm28_ss57 <br>
+│   │   ├── simp_results.txt <br>
+│   │   └── verbose_results.txt <br>
+│   └── ensemble <br>
+│       └── 2022_07_25_hr01_mm40_ss43 <br>
+│           └── results <br>
+│               ├── simp_results.txt <br>
+│               └── verbose_results.txt <br>
+├── nb <br>
+│   ├── Sequence_and_fam_EDA.ipynb <br>
+│   ├── build_test_nb_py.ipynb <br>
+│   ├── download_PFAM_to_drive.ipynb <br>
+│   ├── get_protCNN_inference.ipynb <br>
+│   └── get_protenn_model.ipynb <br>
+├── requirements.txt <br>
+├── src <br>
+│   ├── config <br>
+│   │   ├── config.json <br>
+│   │   └── inf_config.json <br>
+│   ├── inference.py <br>
+│   ├── main.py <br>
+│   ├── update_config.py <br>
+│   ├── update_inference_config.py <br>
+│   └── utils <br>
+│       ├── __pycache__ <br>
+│       │   └── datautils.cpython-39.pyc <br>
+│       ├── datautils.py <br>
+│       └── modelutils.py <br>
+└── test <br>
+    └── test.py <br>
     
 ## Usage
 
