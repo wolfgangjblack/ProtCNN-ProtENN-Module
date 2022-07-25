@@ -13,7 +13,7 @@ Two possible models can be developed here via main.py using the config.json file
 WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign an even number of models. 
 
 ## dir structure
-.
+. <br>
 ├── Dockerfile <br>
 ├── README.md <br>
 ├── models <br>
