@@ -1,4 +1,4 @@
-numpy==1.21.6
+numpy==1.22
 keras==2.8.0
 pandas==1.3.5
 pytest==3.6.4
@@ -6,4 +6,4 @@ sklearn
 tensorflow==2.8.2
 tensorflow-datasets==4.0.1
 tensorflow-addons==0.17.1
-tensorboard==2.2.2
+tensorboard
