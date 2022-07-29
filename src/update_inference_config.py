@@ -31,7 +31,7 @@ data_config = {"DATA_DIR": './../../../PFAM_database/data/random_split/',
                "MAX_LEN": 120,
                "TEST_BATCH_SIZE": 100,
                "INFERENCE_DIR": '../models/ensemble/',
-               "TEST_RANGE": [0,10000]}}
+               "TEST_RANGE": [0,10000]}
 
 
 
