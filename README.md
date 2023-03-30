@@ -13,7 +13,7 @@ Two possible models can be developed here via main.py using the config.json file
 WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign an even number of models. 
 
 ## dir structure
-. <br>
+```. <br>
 ├── Dockerfile <br>
 ├── README.md <br>
 ├── models <br>
@@ -48,7 +48,7 @@ WARNING: Since ProtENN is meant to be an ensemble model, users should NOT assign
 │       └── modelutils.py <br>
 └── test <br>
     └── test.py <br>
-    
+```
 ## Usage
 
 To use this git properly, one can either install Docker and download the docker image, place it inside some cloud resource and run via the image. This however will only run main.py, which reads in a base config file and generates either a ProtCNN or ProtENN. Users can also interact with this via a CLI (or notebook mimicing a CLI) calling main.py, inference.py, update_config.py, or update_inference_config.py. 
